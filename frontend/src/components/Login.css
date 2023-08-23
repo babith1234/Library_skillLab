@@ -1,0 +1,22 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .btn{
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .each-book{
+    height: auto;
+    width: 100%;
+    border: 2px solid red;
+    margin-top: 4px;
+  }
+
+  .nav-item{
+    color: black;
+  }
