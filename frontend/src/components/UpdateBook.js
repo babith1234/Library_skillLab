@@ -82,8 +82,9 @@ const UpdateBook = () => {
                   </div>
                 </div>
               </div>
-              <div class="col-md-2 col-sm-12"></div>
+             
             </div>
+            <div class="col-md-2 col-sm-12"></div>
           </div>
         </div>
       </div>

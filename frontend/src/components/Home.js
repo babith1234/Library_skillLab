@@ -1,25 +1,24 @@
 import AddBook from "./AdBooks";
 import Navbar from "./Navbar";
-import axios from "axios"
-import { useState,useEffect } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const Home = () => {
-const [books,setbooks]=useState([])
+  const [books, setbooks] = useState([]);
 
-useEffect(()=>{
-  function getAllBooks(){
-    try{
-        axios.get("http://localhost:4000/bookdisplay").then((response)=>{
-          console.log(response.data)
-          setbooks(response.data)
-        })
+  useEffect(() => {
+    function getAllBooks() {
+      try {
+        axios.get("http://localhost:4000/bookdisplay").then((response) => {
+          console.log(response.data);
+          setbooks(response.data);
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
-    catch(e){
-      console.log(e)
-    }
-  }
-  getAllBooks()
-},[])
+    getAllBooks();
+  }, []);
   return (
     <>
       <Navbar />
@@ -106,7 +105,7 @@ useEffect(()=>{
         </button>
       </div>
 
-      <center>
+      {/* <center>
         {" "}
         <h1 class="mt-4">MY LIBRARY</h1>
       </center>
@@ -118,8 +117,40 @@ useEffect(()=>{
             <h2 key={i}>{book.Title} {book.Author} {book.Genre} {book.PublicationDate}</h2>
           )
         })
-      }
+      } */}
 
+      <center>
+        <h1 className="mt-4">MY LIBRARY</h1>
+      </center>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12"></div>
+          <table class="table"style={{border:"2px solid black"}}>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Publication Date</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {books.map((book, i) => (
+                <tr key={i}>
+                  <td>{book.Title}</td>
+                  <td>{book.Author}</td>
+                  <td>{book.Genre}</td>
+                  <td>{book.PublicationDate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div class="col-md-4 col-sm-12"></div>
+        </div>
+      </div>
     </>
   );
 };
