@@ -5,15 +5,17 @@ import axios from "axios";
 
 const SetBook = () => {
   const location = useLocation();
+
+  const initialBookDetails = location.state?.bookDetails || {};
+
   
-  const initialBookDetails = location.state.bookDetails;
 
   const [bookDetails, setBookDetails] = useState(initialBookDetails);
 
   const handleUpdate = () => {
     // Send updated data to the server
     axios
-      .put(`http://localhost:4000/bookupdate/${bookDetails.id}`, bookDetails)
+      .post(`http://localhost:4000/bookupdate/${bookDetails._id}`, bookDetails)
       .then((response) => {
         console.log("Data updated successfully:", response.data);
         alert("Book updated successfully")

@@ -22,6 +22,7 @@ const Login = () => {
       .post("http://localhost:4000/userlogin", newUser)
       .then((response) => {
         navigate("/")
+        localStorage.setItem("authToken",response.authToken)
       })
       .catch((e) => {
         alert("Login with correct credentials");
@@ -31,7 +32,7 @@ const Login = () => {
   };
   return (
     <div>
-      <Navbar />
+  
 
       <div class="login-container login">
         <div class="container">

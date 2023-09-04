@@ -1,6 +1,8 @@
 const userModel = require("../models/userModel")
 const {body,validationResult}= require('express-validator')
 const bcrypt = require("bcryptjs")
+const jwt = require('jsonwebtoken')
+const jwtSecret = "MynameIsBabithPoojary"
 
 // const createUser = async (req, res) => {
 //     // body('email').isEmail(),
@@ -50,10 +52,18 @@ const bcrypt = require("bcryptjs")
       if(!userData){
         return res.status(400).json({errors:"Try logging with correct credentials"})
       }
-      if(req.body.password!=userData.password){
+      const pwdcompare = await bcrypt.compare(req.body.password,userData.password)
+      if(!pwdcompare){
         return res.status(400).json({errors:"Try logging with correct credentials"})
       }
-      return res.json({success:true})
+        
+      const data = {
+        user:(
+          id=userData.id
+        )
+      }
+      const authToken = jwt.sign(data,jwtSecret)
+      return res.json({success:true,authToken:authToken})
 
     }catch(e){
         console.log(e)

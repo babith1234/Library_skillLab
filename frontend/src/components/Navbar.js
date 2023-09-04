@@ -1,10 +1,25 @@
-import { Outlet, Link } from "react-router-dom";
-import "./Login.css"
+import { Outlet, Link,useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Navbar = () => {
+  const navigate = useNavigate()
+
+  const handleLogout=()=>{
+      localStorage.removeItem("authToken")
+      navigate("/login")
+  }
+
+  const handleLogin = ()=>{
+    navigate("/login")
+  }
+
+  const handleRegister = ()=>{
+    navigate("/register")
+  }
+
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-warning">
+      <nav class="navbar navbar-expand-lg bg-warning"style={{height:"10vh"}}>
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <h1>Library</h1>
@@ -22,63 +37,53 @@ const Navbar = () => {
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-auto">
-
-            <li class="nav-item">
-                <Link to="/" class="text-decoration-none p-5"style={{color:"black"}}>
+              <li class="nav-item">
+                <Link
+                  to="/"
+                  class="text-decoration-none p-5"
+                  style={{ color: "black" }}
+                >
                   Home
                 </Link>
               </li>
 
               <li class="nav-item">
-                <Link to="/addbook" class="text-decoration-none p-5"style={{color:"black"}}>
+                <Link
+                  to="/addbook"
+                  class="text-decoration-none p-5"
+                  style={{ color: "black" }}
+                >
                   AdBooks
                 </Link>
               </li>
-
-              <li class="nav-item ">
-                <Link to="/register" class="text-decoration-none p-5"style={{color:"black"}}>
-                  Register
-                </Link>
-              </li>
-
-              <li class="nav-item">
-                <Link to="/login" class="text-decoration-none p-5"style={{color:"black"}}>
-                  Login
-                </Link>
-              </li>
-
-              
-
-             
-
-              {/* <li class="nav-item">
-                <Link to="/delbook" class="text-decoration-none p-5">
-                  DeleteBooks
-                </Link>
-              </li> */}
-
-              
-              
-              {/* <li class="nav-item">
-                <Link to="/upbook" class="text-decoration-none p-5">
-                  UpdateBook
-                </Link>
-                </li> */}
-          
-
-
-             
-
-                 
-              {/* <li class="nav-item">
-                <Link to="/setbook" class="text-decoration-none p-5">
-                  Set books
-                </Link>
-                </li> */}
-             
-
             </ul>
 
+           {(!localStorage.getItem("authToken"))?
+           <div className="d-flex">
+              {/* <Link
+                to="/register"
+                class="text-decoration-none p-5 btn bg-white text-warning mx-5"
+                style={{ color: "black" }}
+              >
+                Register
+              </Link>
+
+              <Link
+                to="/login"
+                class="text-decoration-none p-5 btn bg-white text-warning"
+                style={{ color: "black" }}
+              >
+                Login
+              </Link> */}
+                  <div className="btn bg-white text-warning mx-2"onClick={handleLogin}>Login</div>
+                  <div className="btn bg-white text-warning mx-2"onClick={handleRegister}>Register</div>
+
+            </div>
+             :
+             <div className="btn bg-white text-warning mx-2"onClick={handleLogout}>Logout</div>
+
+           }
+            
             <form class="d-flex" role="search"></form>
           </div>
         </div>

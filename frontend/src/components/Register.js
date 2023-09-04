@@ -34,7 +34,7 @@ const Register = () => {
 
   return (
     <>
-      <Navbar />
+     
       <div class="login-container register">
         <div class="container">
           <div class="row">

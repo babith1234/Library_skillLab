@@ -10,7 +10,7 @@ router.post("/bookcreate", bookController.createBook)
 
 router.delete("/bookdelete/:searchValue",bookController.deleteBook)
 
-router.put("/bookupdate/:id",bookController.updateBook)
+router.post("/bookupdate/:id",bookController.updateBook)
 
 router.get("/bookdisplay",bookController.displayBook)
 
